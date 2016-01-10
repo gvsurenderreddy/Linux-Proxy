@@ -37,6 +37,9 @@ setproxy
 elif [ $1 -eq 2 ]
 then
   unsetproxy
+elif [ $1 -eq 3 ]
+then
+  env | grep "proxy" 
 else
   checkproxy
 fi
