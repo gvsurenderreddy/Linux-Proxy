@@ -13,11 +13,16 @@ setproxy(){
   gsettings set org.gnome.system.proxy.ftp port $PORT
   gsettings set org.gnome.system.proxy.socks host $PROXY
   gsettings set org.gnome.system.proxy.socks port $PORT
+  git config --global http.proxy proxy.ssn.net:8080
+  git config --global https.proxy proxy.ssn.net:8080
+
 
 }
 
 unsetproxy(){
   gsettings set org.gnome.system.proxy mode 'none'
+  git config --global --unset http.proxy
+  git config --global --unset https.proxy
   echo "Proxy Unset Successful"
 }
 
@@ -39,7 +44,7 @@ then
   unsetproxy
 elif [ $1 -eq 3 ]
 then
-  env | grep "proxy" 
+  env | grep "proxy"
 else
   checkproxy
 fi
